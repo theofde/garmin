@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: polypacer-garmin-mcp
+    runtime: docker
+    dockerfilePath: ./services/garmin-mcp-gateway/Dockerfile
+    healthCheckPath: /healthz
+    envVars:
+      - key: GARMIN_MCP_GATEWAY_SECRET
+        sync: false
+      - key: GARMIN_DATA_DIR
+        value: /data
+    disk:
+      name: garmin-data
+      mountPath: /data
+      sizeGB: 1
